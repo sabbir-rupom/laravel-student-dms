@@ -203,7 +203,7 @@ Schema::defaultStringLength(191);
 Paginator::useBootstrap();
 ```
 
-ok, I am tired. Feel free to check my git repository source code and check:
+ok, I am tired. Feel free to check my git repository source code about:
 
 - How I created and organized the controllers
 - How I organized the routes
