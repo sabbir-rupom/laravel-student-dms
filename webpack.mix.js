@@ -23,4 +23,4 @@ mix
         'public/assets/webfonts'
     );
 
-mix.browserSync("localhost:8000");
+mix.browserSync("localhost:10008");
