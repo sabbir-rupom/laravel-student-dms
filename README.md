@@ -191,23 +191,41 @@ Why am I creating such models and seeders?
 
 Lets check this **Database ER Diagram**, which we are going to follow our backend's **Database Model Architecture** 
 
-<img src="https://raw.github.com/specialorange/FDXCM/master/doc/controllers_brief.svg">
+<img src="https://raw.githubusercontent.com/sabbir-rupom/laravel-student-dms/master/resources/images/student-db-er-diagram.PNG">
 
+This **Student Data Management System** project will follow this database relationship structure to its Model architecture
 
-php artisan make:seeder UserSeeder
+In `app/Providers/AppServiceProviders.php` add the following code under `boot()` function:
 
-php artisan make:seeder GradeSeeder
+```
+Schema::defaultStringLength(191);
 
-php artisan make:model Student --migration
-php artisan make:model Group --migration
-php artisan make:model Subject --migration
-php artisan make:model Grade --migration
-php artisan make:model Result --migration
+Paginator::useBootstrap();
+```
 
-php artisan storage:link
+ok, I am tired. Feel free to check my git repository source code and check:
 
-php artisan key:generate
+- How I created and organized the controllers
+- How I organized the routes
+- How I organized the blade resources
+- How I handled CSS/Sass, Javascript/jQuery 
+- How I handled database migration files
+- How I handled database seeder classes 
 
+When you finished with your project structure locally, run the following commnads:
+
+```
 php artisan migrate:fresh --seed
 
 php artisan serve --port 10008
+```
+
+Your goals is to run this project successfully, understand the frontend as well as backend structure used in this project, and play with it however you wish to do so.
+
+I hope you will get a lot of benefits just by studying this. 
+
+Feel free to ask anything as repository issues here. I will try to answer your query as early as possible. 
+
+I will update this project according to the latest tech versions in future.
+
+Cheers!
