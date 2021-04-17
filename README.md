@@ -47,7 +47,7 @@ Also, as a web developer you should have experience in handling a suitable IDE. 
 
 Lets say, you know laravel, you have a suitable environment setup in your computer like: WAMPP, Composer, Node, GIT Bash etc. 
 
-From a suitable directory, I have run the following commands:
+From a suitable directory, I have run the following commands in CLI:
 
 ```
 composer create-project laravel/laravel student-dms
@@ -65,12 +65,82 @@ npm install --save jquery
 npm install @fortawesome/fontawesome-free --save-dev
 ```
 
-// add necessary changes in:
-// - resources/js/bootstrap.js 
-// - resources/js/app.js 
-// - delete css folder and add saas/app.scss in resources directory with changes
- 
-npm run dev [ 2 times ]
+Now, all these packages need to be wraped with laravel mix, right? 
+
+So, I have done some necessary code changes as follows:
+
+- `resources/js/bootstrap.js` : added the following code under *axios*
+
+```
+window.$ = window.jQuery = require("jquery");
+```
+
+- `resources/js/app.js` : added the following code under *require('./bootstrap')*
+
+```
+$(function(){
+    console.log('it is working');
+});
+```
+
+- Renamed `resources/css` to `resources/sass`
+- Renamed `resources/sass/app.css` to `resources/sass/app.scss`
+- `resources/sass/app.scss` : added the following code:
+
+```
+@import '~bootstrap/scss/bootstrap';
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+body,
+html {
+    height: 100%;
+    overflow-y: auto;
+}
+```
+
+- `webpack.mix.js` : replaced with the following code:
+
+```
+const mix = require('laravel-mix');
+
+mix
+    .js('resources/js/app.js', 'public/assets/js').minify('public/assets/js/app.js')
+    .sass('resources/sass/app.scss', 'public/assets/css').minify('public/assets/css/app.css')
+    .copy(
+        'resources/images',
+        'public/assets/images'
+    )
+    .copy(
+        'node_modules/@fortawesome/fontawesome-free/webfonts',
+        'public/assets/webfonts'
+    );
+
+mix.browserSync("localhost:10008");
+```
+
+Now, why did I change the mix configuration like above? Well:
+
+- To group all the resource script files
+- To copy all required assets file images
+- To copy all required assets file fonts
+- To move all required asset files  under a specific public directory, to organize them in a better way
+- And, used [BrowserSync](https://laravel-mix.com/docs/5.0/browsersync)
+
+After all above, run the following commands in CLI (twice):
+
+```
+npm run dev
+```
+
+Why twice? Sometimes laravel mix fails to generate all the resource assets properly. So doing double time puts extra assurity. 
+
+If the laravel mix execution finishes successfully, lets move on to our **Backend Architecture**
+
+####
 
 composer require laravel/fortify
 
