@@ -1,0 +1,30 @@
+@import '~bootstrap/scss/bootstrap';
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+body,
+html {
+    height: 100%;
+    overflow-y: auto;
+}
+
+#content--main {
+    min-height: calc(100% - 100px);
+}
+
+.navbar-nav.ms-auto {
+    .dropdown-menu[data-bs-popper] {
+        left: auto;
+        margin-top: 0.4rem;
+        right: 0;
+    }
+}
+
+td {
+    .img-table {
+        max-width: 80px;
+    }
+}
