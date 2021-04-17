@@ -26,7 +26,9 @@ Lets find out our technology stacks here:
 * [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) : Though Tailwind CSS would have been the best approach here, I am little weak on tailwind (LoL)
 * [Sass](https://sass-lang.com/guide)
 * [jQuery](https://jquery.com/) : How about you learn more about it from here: [https://www.youtube.com/watch?v=HgvIox6ehkM](https://www.youtube.com/watch?v=HgvIox6ehkM)
-* [Laravel Mix/Webpack](https://laravel.com/docs/8.x/mix) :  While using laravel mix for your resource management, you may think, "what the hell is webpack doing here?". Well, you should learn about it- dont you? [https://www.youtube.com/watch?v=X1nxTjVDYdQ](https://www.youtube.com/watch?v=X1nxTjVDYdQ)
+* [Laravel Mix/Webpack](https://laravel.com/docs/8.x/mix) :  While using laravel mix for your resource management, you may think, 
+"what the hell is webpack doing here?". 
+Well, you should learn about it- dont you? [https://www.youtube.com/watch?v=X1nxTjVDYdQ](https://www.youtube.com/watch?v=X1nxTjVDYdQ)
 
 ### Prerequisite Technology Skills
 
