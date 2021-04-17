@@ -144,22 +144,64 @@ Why twice? Sometimes laravel mix fails to generate all the resource assets prope
 
 If the laravel mix execution finishes successfully, lets move on to our **Backend Architecture**
 
-####
+#### Structuring Backend
 
+using jetstream, laravel-ui may seem little complex to some fresh web developers, thats why I haven't used them except:
+
+```
 composer require laravel/fortify
+
+php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+```
+
+You should ensure `Laravel\Fortify\FortifyServiceProvider` class is registered within the providers array of your application's config/app.php configuration file.
+
+In this project, we will only use the `Login` process part of Fortify. So, lets be sure the `app/Providers/FortifyServiceProvider.php` has the following code under `boot()` function:
+
+```
+RateLimiter::for('login', function (Request $request) {
+    return Limit::perMinute(5)->by($request->email . $request->ip());
+});
+
+Fortify::loginView(function () {
+    return view('home');
+});
+``` 
+
+Set your login view page with any blade template page you like. 
+
+Now, lets execute the following commands: 
+
+```
+php artisan storage:link
+php artisan key:generate
+
+php artisan make:model Student --migration
+php artisan make:model Group --migration
+php artisan make:model Subject --migration
+php artisan make:model Grade --migration
+php artisan make:model Result --migration
+
+php artisan make:seeder UserSeeder
+php artisan make:seeder GradeSeeder
+
+```
+
+Why am I creating such models and seeders? 
+
+Lets check this **Database ER Diagram**, which we are going to follow our backend's **Database Model Architecture** 
+
+<img src="https://raw.github.com/specialorange/FDXCM/master/doc/controllers_brief.svg">
+
 
 php artisan make:seeder UserSeeder
 
 php artisan make:seeder GradeSeeder
 
 php artisan make:model Student --migration
-
 php artisan make:model Group --migration
-
 php artisan make:model Subject --migration
-
 php artisan make:model Grade --migration
-
 php artisan make:model Result --migration
 
 php artisan storage:link
